@@ -1,0 +1,72 @@
+table {
+  width: 100%;
+}
+
+caption {
+  padding: 1rem;
+  background-color: $main-color;
+  color: #fff;
+  text-transform: uppercase;
+}
+
+th {
+  background-color: transparentize($main-color, 0.75);
+}
+
+th,
+td {
+  padding: 1rem;
+  text-transform: capitalize;
+  text-align: center;
+}
+
+tbody tr {
+  &:nth-child(odd) {
+    td {
+      background-color: transparentize($secondary-color, 0.75);
+    }
+  }
+
+  &:nth-child(even) {
+    td {
+      background-color: transparentize($main-color, 0.75);
+    }
+  }
+}
+
+.btn {
+  width: fit-content;
+
+  &--container {
+    @include flex(center, center);
+    width: 75%;
+    margin: 2rem auto;
+  }
+}
+
+.actions {
+  @include flex(center, center);
+  gap: 0.5rem;
+
+  a {
+    color: darken($main-color, 10%);
+    transform: scale(1.1);
+    transition: $transition;
+
+    &:hover {
+      color: $main-color;
+    }
+  }
+
+  button {
+    background-color: transparent;
+    box-shadow: none;
+    color: red;
+    transition: $transition;
+
+    &:hover {
+      color: lighten(red, 20%);
+      background-color: transparent;
+    }
+  }
+}

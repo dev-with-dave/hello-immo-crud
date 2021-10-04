@@ -1,0 +1,26 @@
+{% extends "layouts/main.twig" %}
+
+
+{% block main %}
+	<h1>Connexion</h1>
+	<form class='auth-form' action="/connexion" method='POST'>
+		{% if errors.notFound %}
+			<p class="error">{{errors.notFound}}</p>
+		{% endif %}
+		<fieldset>
+			<div>
+				<input type="email" name="email" value="{{data.email}}" placeholder="Email">
+				{% if errors.email %}
+					<p class="error">{{errors.email}}</p>
+				{% endif %}
+			</div>
+			<div>
+				<input type="password" name="password" value="{{data.password}}" placeholder="Mot de passe">
+				{% if errors.password %}
+					<p class="error">{{errors.password}}</p>
+				{% endif %}
+			</div>
+		</fieldset>
+		<button>Se connecter</button>
+	</form>
+{% endblock %}

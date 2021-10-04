@@ -1,0 +1,26 @@
+.admin-container {
+  @extend %container;
+  grid-template-rows: $main-header-size auto;
+  grid-template-areas: 'admin-header' 'admin-main';
+}
+
+.admin-header {
+  @extend .main-header;
+  grid-area: admin-header;
+}
+
+.admin-main {
+  grid-area: admin-main;
+  padding: 4rem;
+
+  img {
+    border-radius: 8px;
+    max-width: 100%;
+  }
+}
+
+.admin-home-image-container {
+  @include flex(center, center);
+  width: 60%;
+  margin: 2rem auto;
+}

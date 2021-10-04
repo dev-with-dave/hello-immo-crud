@@ -1,0 +1,51 @@
+{% extends "layouts/main.twig" %}
+
+{% block title %}
+	<title>Hello Immo -
+		{{estates[0].getAcquisitionType() | capitalize}}</title>
+{% endblock %}
+
+
+{% block main %}
+	<section class="estates">
+		{% for estate in estates %}
+			<article class="estate-card">
+				<a href="/{{estate.getAcquisitionType()}}/{{estate.getId()}}">
+					<div style="background-image: url('{{estate.getImages()[0] ?? '/public/assets/images/placeholder.jpg'}}');" class="estate-card__image"></div>
+					<div class="estate-card__content">
+						<div>
+							<strong>{{estate.getPrice() | number_format(0, '.', ' ')}}
+								€</strong>
+							<strong>{{estate.getType()}}</strong>
+						</div>
+						<div>
+							<ul>
+								<li>
+									{{estate.getRooms()}}
+									pièces
+								</li>
+								<li>-</li>
+								<li>
+									{{estate.getBedrooms()}}
+									chambres
+								</li>
+								<li>-</li>
+								<li>
+									{{estate.getBathrooms()}}
+									{{estate.getBathrooms() > 1 ? "salles" : "salle"}}
+									de bain
+								</li>
+								<li>-</li>
+								<li>
+									{{estate.getArea()}}m²
+								</li>
+							</ul>
+						</div>
+						<em>Situé à
+							{{estate.getCity()}}</em>
+					</div>
+				</a>
+			</article>
+		{% endfor %}
+	</section>
+{% endblock %}

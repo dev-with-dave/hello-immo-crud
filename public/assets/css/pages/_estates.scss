@@ -1,0 +1,226 @@
+.estates {
+  @include flex(center, space-between, row wrap);
+  gap: 4rem;
+}
+
+.estate-card {
+  font-weight: 600;
+  border: 2px solid transparent;
+  border-radius: 8px;
+  transition: $transition;
+  width: 45%;
+
+  &:hover,
+  &:active,
+  &:focus {
+    border: 2px solid $secondary-color;
+    box-shadow: 2px 2px 5px 1px transparentize($dark-color, 0.75);
+  }
+
+  a {
+    @include flex($flex-flow: column nowrap);
+
+    @include md {
+      flex-direction: row;
+      width: 45%;
+      min-width: 570px;
+      gap: 1rem;
+    }
+  }
+
+  &__content {
+    @include flex($justify: space-between, $flex-flow: column nowrap);
+  }
+
+  strong {
+    display: block;
+    font-size: 1.25rem;
+
+    &:first-of-type {
+      font-weight: bold;
+      font-size: 1.5rem;
+    }
+  }
+
+  ul {
+    @include flex(center, $flex-flow: row wrap);
+    column-gap: 0.5rem;
+    margin-top: 1rem;
+
+    li {
+      width: fit-content;
+    }
+  }
+
+  &__image {
+    background-position: center;
+    background-size: cover;
+    aspect-ratio: 16/9;
+    border-radius: 8px;
+    cursor: pointer;
+
+    @include md {
+      width: 75%;
+    }
+  }
+}
+
+.estate-backdrop {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  pointer-events: none;
+  z-index: 5000;
+  transition: $transition;
+
+  &.visible {
+    opacity: 1;
+    pointer-events: all;
+  }
+
+  &__image {
+    width: 90%;
+    max-width: $max-container-width * 1.5;
+    background-position: center;
+    background-size: cover;
+    aspect-ratio: 16/9;
+    border-radius: 8px;
+    z-index: 10000;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 2px solid $dark-color;
+    box-shadow: 1px 1px 5px 0 rgba(0, 0, 0, 0.75);
+  }
+
+  .close-cross {
+    height: 3rem;
+    width: 3rem;
+    position: absolute;
+    top: -1.5rem;
+    right: -1.5rem;
+    background-color: $dark-color;
+    border-radius: 50%;
+    transition: $transition;
+    cursor: pointer;
+    box-shadow: 1px 1px 5px 0 rgba(0, 0, 0, 0.75);
+
+    &:hover {
+      transform: rotate(180deg);
+      box-shadow: -1px -1px 5px 0 rgba(0, 0, 0, 0.75);
+
+      &:before,
+      &:after {
+        background-color: red;
+      }
+    }
+
+    &::before,
+    &::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      height: 0.25rem;
+      width: 1.5rem;
+      background-color: #fff;
+    }
+
+    &::before {
+      transform: translate(-50%, -50%) rotate(45deg);
+    }
+    &::after {
+      transform: translate(-50%, -50%) rotate(-45deg);
+    }
+  }
+}
+
+.estate-details {
+  @include flex();
+  gap: 4rem;
+
+  .estate-card__image {
+    width: 100%;
+  }
+
+  & > div {
+    &:first-child {
+      width: 70%;
+    }
+
+    &:last-child {
+      @include flex($flex-flow: column nowrap);
+      width: 30%;
+      gap: 0.75rem;
+    }
+  }
+
+  h1 {
+    margin-bottom: 1rem;
+  }
+
+  h2 {
+    text-transform: capitalize;
+  }
+
+  h3 {
+    font-weight: 600;
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+  }
+
+  p {
+    text-align: justify;
+  }
+
+  h2,
+  strong {
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
+
+  .title__container {
+    @include flex(center, space-between);
+    margin-top: 2rem;
+  }
+
+  ul {
+    @include flex(center, space-between, row wrap);
+
+    li {
+      width: 45%;
+    }
+  }
+}
+
+.estate-images {
+  @include flex;
+  gap: 0.5rem;
+  margin-top: 1rem;
+  padding: 1rem;
+  border-radius: 8px;
+  background-color: rgba(0, 0, 0, 0.75);
+  width: 100%;
+  overflow-x: auto;
+
+  div {
+    cursor: pointer;
+    flex: 0 0 auto;
+    width: 10rem;
+    background-position: center;
+    background-size: cover;
+    aspect-ratio: 16/9;
+    border-radius: 8px;
+    border: 2px solid transparent;
+    transition: all 400ms ease;
+
+    &:hover,
+    &:active {
+      border-color: #fff;
+      transform: scale(1.075);
+      transition: all 200ms ease;
+    }
+  }
+}

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="fr">
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		{% block title %}
+			<title>Hello Immo - Accueil</title>
+		{% endblock %}
+
+		<link rel="stylesheet" href="/public/assets/css/main.css"> {% block head %}{% endblock %}
+		</head>
+		<body>
+			<div class="admin-container">
+				<header class="admin-header">
+					<div class="header__content">
+						<div class="logo">
+							<a href="/">
+								<img src="/public/assets/images/logo.png" alt="">
+							</a>
+						</div>
+						<nav>
+							<ul>
+								<li class="menu--nav">
+									<ul>
+										<li><a href="/admin/biens">Biens</a></li>
+									</ul>
+								</li>
+								<li class="menu--auth">
+									<ul>
+										<li><a href="/deconnexion">Se déconnecter</a></li>
+									</ul>
+								</li>
+							</ul>
+						</nav>
+					</div>
+				</header>
+				<main class="admin-main"> {% block main %}{% endblock %}
+					</main>
+				</div>
+			</body>
+		</html>

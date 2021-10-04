@@ -1,0 +1,73 @@
+{% extends "layouts/admin.twig" %}
+
+{% block title %}
+	<title>Hello Immo - Biens</title>
+{% endblock %}
+
+{% block head %}
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
+{% endblock %}
+
+{% block main %}
+	<table>
+		<caption>Biens</caption>
+		<thead>
+			<tr>
+				<th>ID</th>
+				<th>bien</th>
+				<th>type</th>
+				<th>pièces</th>
+				<th>chambres</th>
+				<th>sdb</th>
+				<th>superficie</th>
+				<th>prix</th>
+				<th>date de construction</th>
+				<th>étage / max étages</th>
+				<th>
+					actions
+				</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% if estates %}
+				{% for estate in estates %}
+					<tr>
+						<td>{{estate.getId()}}</td>
+						<td>{{estate.getType()}}</td>
+						<td>{{estate.getAcquisitionType()}}</td>
+						<td>{{estate.getRooms()}}</td>
+						<td>{{estate.getBedrooms()}}</td>
+						<td>{{estate.getBathrooms()}}</td>
+						<td>{{estate.getArea()}}m²</td>
+						<td>{{estate.getPrice()}}€</td>
+						<td>{{estate.getBuildYear() ?? "NC"}}
+						</td>
+						<td>{{estate.getFloor() ?? "-"}}
+							/
+							{{estate.getMaxFloor() ?? '-'}}
+						</td>
+						<td>
+							<div class="actions">
+								<a href="/admin/biens/modifier/{{estate.getId()}}" class="edit">
+									<i class="fas fa-edit"></i>
+								</a>
+								<form action="javascript:void(0);" method="POST">
+									<button class="delete">
+										<i class="fas fa-trash"></i>
+									</button>
+								</form>
+							</div>
+						</td>
+					</tr>
+				{% endfor %}
+			{% else %}
+				<tr>
+					<td colspan="10">Pas de biens pour le moment...</td>
+				</tr>
+			{% endif %}
+		</tbody>
+	</table>
+	<div class="btn--container">
+		<a class="btn" href="/admin/biens/ajouter">Ajouter un bien</a>
+	</div>
+{% endblock %}

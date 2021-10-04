@@ -1,0 +1,79 @@
+{% extends "layouts/main.twig" %}
+
+{% block head %}
+	<script src="/public/assets/js/home.js" defer></script>
+{% endblock %}
+
+{% block main %}
+	<h1>Quel est votre projet ?</h1>
+	<div class="form__container">
+		<div class="tabs">
+			<div data-type="achat" class="tab buy active">Acheter</div>
+			<div data-type="location" class="tab rent">Louer</div>
+			<div data-type="estimation" class="tab estimate">Estimer</div>
+		</div>
+		<form action="/achat">
+			<div>
+				<input name="city" type="text" placeholder="Dans quelle ville?">
+				<input name="maxPrice" type="number" placeholder="Budget max?" min="0">
+			</div>
+			<button>Rechercher</button>
+		</form>
+	</div>
+	<section class="home__images">
+		<div class="carousel">
+			<div class="carousel__images">
+				<div class="carousel__image active">
+					<div class="overlay"></div>
+					<div class="carousel__image-container">
+						<img src="/public/assets/images/home-1.jpg" alt="">
+						<p>
+							<span>
+								Que vous recherchiez un
+								<strong>quartier tranquille</strong>
+								pour vivre avec votre famille et élever vos enfants
+								<strong>sereinement</strong>,
+							</span>
+						</p>
+					</div>
+				</div>
+				<div class="carousel__image">
+					<div class="overlay"></div>
+					<div class="carousel__image-container">
+						<img src="/public/assets/images/home-2.jpg" alt="">
+						<p>
+							<span>
+								Ou plutôt une maison de
+								<strong>vacances</strong>.
+							</span>
+						</p>
+					</div>
+				</div>
+				<div class="carousel__image">
+					<div class="overlay"></div>
+					<div class="carousel__image-container">
+						<img src="/public/assets/images/home-3.jpg" alt="">
+						<p>
+							<span>
+								Nous avons probablement un
+								<strong>
+									bien
+								</strong>
+								pour
+								<strong>
+									vous
+								</strong>
+								!
+
+							</span>
+						</p>
+					</div>
+				</div>
+			</div>
+			<div class="indicators"></div>
+		</div>
+		<p></p>
+	</section>
+
+
+{% endblock %}

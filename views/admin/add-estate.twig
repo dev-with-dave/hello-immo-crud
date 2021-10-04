@@ -1,0 +1,119 @@
+{% extends "layouts/admin.twig" %}
+
+{% block title %}
+	<title>Hello Immo - Ajouter un bien</title>
+{% endblock %}
+
+{% block head %}
+	<script src="/public/assets/js/add-estate.js" defer></script>
+{% endblock %}
+
+{% block main %}
+	<form class="add-estate-form" action="/admin/biens/ajouter" method="POST" enctype="multipart/form-data">
+		<div class="input-group">
+			<div class="input--container">
+				<input type="text" value="{{data.title}}" placeholder="Titre de l'annonce" name="title">
+				{% if errors.title %}
+					<p class="error">{{errors.title}}</p>
+				{% endif %}
+			</div>
+		</div>
+
+		<div class="input-group">
+			<div class="input--container">
+				<textarea name="description" placeholder="Décrivez le bien à mettre en vente/location">{{data.description}}</textarea>
+
+				{% if errors.description %}
+					<p class="error">{{errors.description}}</p>
+				{% endif %}
+			</div>
+		</div>
+
+		<div class="input-group">
+			<div class="input--container">
+				<select name="type">
+					<option {{data.type == "maison" ? 'selected' : ''}} value="maison">Maison</option>
+					<option {{data.type == "appartement" ? 'selected' : ''}} value="appartement">Appartement</option>
+					<option {{data.type == "studio" ? 'selected' : ''}} value="studio">Studio</option>
+				</select>
+				{% if errors.type %}
+					<p class="error">{{errors.type}}</p>
+				{% endif %}
+			</div>
+			<div class="input--container">
+				<select name="acquisition_type">
+					<option {{data.acquisition_type == "achat" ? 'selected' : ''}} value="achat">Achat</option>
+					<option {{data.acquisition_type == "location" ? 'selected' : ''}} value="location">Location</option>
+				</select>
+				{% if errors.acquisition_type %}
+					<p class="error">{{errors.acquisition_type}}</p>
+				{% endif %}
+			</div>
+		</div>
+
+		<div class="input-group">
+			<div class="input--container"><input min="1" type="number" placeholder="Pièces" value="{{data.rooms}}" name="rooms">
+				{% if errors.rooms %}
+					<p class="error">{{errors.rooms}}</p>
+				{% endif %}
+			</div>
+			<div class="input--container"><input min="0" type="number" placeholder="Chambres" value="{{data.bedrooms}}" name="bedrooms">
+				{% if errors.bedrooms %}
+					<p class="error">{{errors.bedrooms}}</p>
+				{% endif %}
+			</div>
+			<div class="input--container"><input min="1" type="number" placeholder="Salles de bain" value="{{data.bathrooms}}" name="bathrooms">
+				{% if errors.bathrooms %}
+					<p class="error">{{errors.bathrooms}}</p>
+				{% endif %}
+			</div>
+		</div>
+
+		<div class="input-group">
+			<div class="input--container"><input min="1" type="number" placeholder="Superficie (en m²)" value="{{data.area}}" name="area">
+				{% if errors.area %}
+					<p class="error">{{errors.area}}</p>
+				{% endif %}
+			</div>
+			<div class="input--container"><input min="0" type="number" placeholder="Etage" value="{{data.floor}}" name="floor">
+				{% if errors.floor %}
+					<p class="error">{{errors.floor}}</p>
+				{% endif %}
+			</div>
+			<div class="input--container"><input min="0" type="number" placeholder="Etage max" value="{{data.max_floor}}" name="max_floor">
+				{% if errors.max_floor %}
+					<p class="error">{{errors.max_floor}}</p>
+				{% endif %}
+			</div>
+		</div>
+
+		<div class="input-group">
+			<div class="input--container">
+				<input type="text" placeholder="Ville ou se situe le bien" value="{{data.city}}" name="city">
+				{% if errors.city %}
+					<p class="error">{{errors.city}}</p>
+				{% endif %}
+			</div>
+			<div class="input--container">
+				<input min="1" type="number" placeholder="Année de construction" value="{{data.build_year}}" name="build_year">
+				{% if errors.build_year %}
+					<p class="error">{{errors.build_year}}</p>
+				{% endif %}
+			</div>
+			<div class="input--container">
+				<input min="1" type="number" placeholder="Prix du bien (en €)" value="{{data.price}}" name="price">
+				{% if errors.price %}
+					<p class="error">{{errors.price}}</p>
+				{% endif %}
+			</div>
+		</div>
+
+		<div class="input-group">
+			<div class="input--container">
+				<input type="file" name="images[]" multiple>
+			</div>
+		</div>
+		<div id="image-preview"></div>
+		<button type="submit" class="btn">Ajouter</button>
+	</form>
+{% endblock %}

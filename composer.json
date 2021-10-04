@@ -1,0 +1,20 @@
+{
+  "name": "david/router-php",
+  "require": {
+    "altorouter/altorouter": "^2.0",
+    "twig/twig": "^3.3",
+    "vlucas/phpdotenv": "^5.3",
+    "ramsey/uuid": "^4.2"
+  },
+  "authors": [
+    {
+      "name": "ZayenJS",
+      "email": "davidnogueira.dev.pro@gmail.com"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "App\\": "src"
+    }
+  }
+}

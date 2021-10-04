@@ -1,0 +1,144 @@
+h1 {
+  text-align: center;
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.form__container {
+  @include flex(center, center, column nowrap);
+  border-radius: 8px;
+  background-color: #fff;
+  width: fit-content;
+  box-shadow: 2px 2px 1px 1px rgba(0, 0, 0, 0.25);
+  margin: 2rem auto 4rem;
+  position: relative;
+  overflow: hidden;
+
+  form {
+    @include flex(stretch, space-between, column nowrap);
+    gap: 4rem;
+    padding: 4rem;
+
+    div {
+      @include flex(center, center);
+      gap: 2rem;
+    }
+  }
+}
+
+.tabs {
+  @include flex(center, space-between);
+  width: 100%;
+  background-color: #000;
+}
+
+.tab {
+  @include flex(center, center);
+  font-size: 1.2rem;
+  padding: 1rem 0;
+  width: 100%;
+  cursor: pointer;
+  background-color: rgba(255, 255, 255, 0.75);
+  border-bottom: 1px solid transparentize($dark-color, 0.25);
+  transition: $transition;
+
+  &:not(:last-child) {
+    border-right: 1px solid transparentize($dark-color, 0.25);
+  }
+
+  &.active {
+    color: #fff;
+    background-color: $main-color;
+  }
+}
+
+.buy {
+}
+
+.rent {
+}
+
+.carousel {
+  width: 100%;
+  aspect-ratio: 16/9;
+  overflow: hidden;
+  border-radius: 8px;
+  position: relative;
+
+  &__images {
+    position: relative;
+    display: flex;
+    height: 100%;
+    overflow: hidden;
+  }
+
+  .overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+
+  &__image {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    height: 100%;
+    width: 100%;
+    transform: translate(-25%);
+    transition: all 750ms ease-in-out;
+
+    img {
+      width: 100%;
+      aspect-ratio: 16/9;
+      max-width: 100%;
+    }
+
+    &.active {
+      position: static;
+      transform: translate(0);
+      opacity: 1;
+    }
+
+    &-container {
+      position: relative;
+    }
+
+    p {
+      color: #fff;
+      text-align: center;
+      max-width: 50rem;
+      width: 75%;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 2rem;
+      font-weight: bold;
+      z-index: 50;
+    }
+  }
+}
+
+.indicators {
+  @include flex(center, center);
+  gap: 0.5rem;
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translate(-50%);
+  z-index: 500;
+}
+
+.indicator {
+  height: 0.75rem;
+  width: 2.5rem;
+  border-radius: 8px;
+  background-color: rgba(0, 0, 0, 0.5);
+  border: 2px solid #fff;
+  cursor: pointer;
+
+  &.active {
+    background-color: #fff;
+  }
+}

@@ -1,0 +1,17 @@
+.auth-form {
+  @include flex(stretch, center, column nowrap);
+  max-width: $max-container-width / 2;
+  margin: 4rem auto;
+  width: 100%;
+  gap: 2rem;
+
+  fieldset {
+    @include flex(stretch, center);
+    gap: 2rem;
+
+    div,
+    input {
+      width: 100%;
+    }
+  }
+}

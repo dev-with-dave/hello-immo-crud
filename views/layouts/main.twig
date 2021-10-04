@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="fr">
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		{% block title %}
+			<title>Hello Immo - Accueil</title>
+		{% endblock %}
+
+		<link rel="stylesheet" href="/public/assets/css/main.css"> {% block head %}{% endblock %}
+		</head>
+		<body>
+			<div class="main-container">
+				<header class="main-header">
+					<div class="header__content">
+						<div class="logo">
+							<a href="/">
+								<img src="/public/assets/images/logo.png" alt="">
+							</a>
+						</div>
+						<nav>
+							<ul>
+								<li class="menu--nav">
+									<ul>
+										<li><a href="/">Accueil</a></li>
+										<li><a href="/achat">Acheter</a></li>
+										<li><a href="/location">Louer</a></li>
+									</ul>
+								</li>
+								<li class="menu--auth">
+									<ul>
+										{% if user %}
+											<li>
+												<a href="{{user.getType() == "admin" ? "/admin/accueil" : "/mon-compte" }}">Mon compte</a>
+											</li>
+											<li>
+												<a href="/deconnexion">Se déconnecter</a>
+											</li>
+										{% else %}
+											<li>
+												<a href="#">Créer un compte</a>
+											</li>
+											<li>
+												<a href="/connexion">Se connecter</a>
+											</li>
+										{% endif %}
+									</ul>
+								</li>
+							</ul>
+						</nav>
+					</div>
+				</header>
+				<main class="main-main"> {% block main %}{% endblock %}
+					</main>
+					<footer class="main-footer">
+						<div>
+							<div class="logo"><img src="/public/assets/images/logo-white.png" alt=""></div>
+							<div>
+								<h4>L'entreprise</h4>
+								<ul>
+									<li><a href="#">Qui sommes-nous?</a></li>
+									<li><a href="#">Nous contacter</a></li>
+									<li><a href="#">Nous recrutons</a></li>
+								</ul>
+							</div>
+							<div>
+								<h4>Nos applications</h4>
+								<ul>
+									<li>
+										<a href="#">Télécharger l'application</a>
+									</li>
+									<li class="stores">
+										<a class="android" href="#"></a>
+										<a class="ios" href="#"></a>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</footer>
+				</div>
+			</body>
+		</html>

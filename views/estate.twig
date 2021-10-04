@@ -1,0 +1,80 @@
+{% extends "layouts/main.twig" %}
+
+{% block title %}
+	<title>Hello Immo -
+		{{estate.getAcquisitionType() | capitalize}}</title>
+{% endblock %}
+
+{% block head %}
+	<script src="/public/assets/js/estate.js" defer></script>
+{% endblock %}
+
+{% block main %}
+	<div class="estate-backdrop">
+		<div class="estate-backdrop__image">
+			<div class="close-cross"></div>
+
+		</div>
+	</div>
+	<section class="estate-details">
+		<div>
+			{% set images = estate.getImages() %}
+			<div style="background-image: url('{{images[0] ?? '/public/assets/images/placeholder.jpg'}}');" class="estate-card__image"></div>
+			{% if (images | length) > 0 %}
+				<div class="estate-images">
+					{% for i in range(1, (images | length) - 1) %}
+						<div style="background-image: url('{{images[i]}}')"></div>
+					{% endfor %}
+				</div>
+			{% endif %}
+			<div class="title__container">
+				<h2>{{estate.getAcquisitionType()}}
+					{{estate.getType()}}</h2>
+				<strong>{{estate.getPrice() | number_format(0, '.', ' ')}}
+					€</strong>
+			</div>
+		</div>
+		<div>
+			<h1>
+				{{estate.getTitle()}}
+			</h1>
+			<p>
+				{{estate.getDescription()}}
+			</p>
+			<div>
+				<h3>Caractéristiques</h3>
+				<ul>
+					<li>
+						{{estate.getRooms()}}
+						pièce{{estate.getRooms() > 1 ? 's' : ''}}
+
+					</li>
+					<li>
+						{{estate.getBedrooms()}}
+						chambre{{estate.getBedrooms() > 1 ? 's': ''}}
+					</li>
+					<li>
+						{{estate.getBathrooms()}}
+						salle{{estate.getBathrooms() > 1 ? "s" : ""}}
+						de bain
+					</li>
+					<li>
+						{{estate.getArea()}}m²
+					</li>
+				</ul>
+				<ul>
+					<li>Construit en
+						{{estate.getBuildYear()}}</li>
+					{% if estate.getFloor() %}
+						<li>
+							étage
+							{{estate.getFloor()}}
+							/
+							{{estate.getMaxFloor()}}
+						</li>
+					{% endif %}
+				</ul>
+			</div>
+		</div>
+	</section>
+{% endblock %}
